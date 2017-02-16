@@ -1,8 +1,8 @@
+'use strict'
 
-module.exports = function await(event) {
-  var self = this
-  return function (done) {
-    if (event !== 'error') done = done.bind(null, null)
-    self.once(event, done)
-  }
+module.exports = function(event) {
+  return new Promise((resolve, reject) => {
+    const done = event === 'error' ? reject : resolve
+    this.once(event, done)
+  })
 }
