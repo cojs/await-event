@@ -27,7 +27,7 @@ stream.write('some chunk')
 You can use awaitEvent without attach on an event emitter:
 
 ```js
-var EventEmitter = require('event')
+var EventEmitter = require('events')
 
 var emitter = new EventEmitter()
 co(function*() {
@@ -38,7 +38,7 @@ co(function*() {
 When use this for `error` event, it will reject once `error` event emitted:
 
 ```js
-var EventEmitter = require('event')
+var EventEmitter = require('events')
 
 var emitter = new EventEmitter()
 co(function*() {
