@@ -14,6 +14,21 @@ it('await event', () => {
   })
 })
 
+it('await event with timeout', () => {
+  return co(function* () {
+    const e = new EventEmitter()
+    e.await = awaitEvent
+    try {
+      yield e.await('data', 1000)
+    } catch (e) {
+      if (e.message === 'timeout') {
+        return
+      }
+    }
+    throw new Error('boom')
+  })
+})
+
 it('await error', done => {
   co(function* () {
     const e = new EventEmitter()
